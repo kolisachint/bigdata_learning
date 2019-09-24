@@ -81,28 +81,30 @@ https://github.com/airbnb/airpal
     
     GRANT ALL ON airpal.* TO root@localhost IDENTIFIED BY 'root123';
     GRANT ALL ON airpal TO root@localhost;
-FLUSH privileges;
+     FLUSH privileges;
 
-mysqlcheck -u root -p --all-databases --check-upgrade --auto-repair
-mysql_upgrade -u root -p
+     mysqlcheck -u root -p --all-databases --check-upgrade --auto-repair
+     mysql_upgrade -u root -p
 
 
-CREATE TABLE externalhive.request_logs (
-  request_time timestamp,
-  url varchar,
-  ip varchar,
-  user_agent varchar
-)
-WITH (
-  format = 'TEXTFILE',
-  external_location = 'gs://gcs_sachinkoli/request_logs/'
-)
+     CREATE TABLE externalhive.request_logs (
+       request_time timestamp,
+       url varchar,
+       ip varchar,
+       user_agent varchar
+     )
+     WITH (
+       format = 'TEXTFILE',
+       external_location = 'gs://gcs_sachinkoli/request_logs/'
+     )
 
 
 airpal
+
     java -server \
          -Duser.timezone=UTC \
          -cp build/libs/airpal-*-all.jar com.airbnb.airpal.AirpalApplication server reference.yml
-     
+
 hue
+
      /usr/lib/hue/build/env/bin/supervisor -p /var/run/hue/supervisor.pid -d -l /var/log/hue
