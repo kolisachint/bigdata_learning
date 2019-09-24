@@ -99,10 +99,10 @@ WITH (
 )
 
 
-
-java -server \
-     -Duser.timezone=UTC \
-     -cp build/libs/airpal-*-all.jar com.airbnb.airpal.AirpalApplication server reference.yml
+airpal
+    java -server \
+         -Duser.timezone=UTC \
+         -cp build/libs/airpal-*-all.jar com.airbnb.airpal.AirpalApplication server reference.yml
      
-     
-     
+hue
+     /usr/lib/hue/build/env/bin/supervisor -p /var/run/hue/supervisor.pid -d -l /var/log/hue
