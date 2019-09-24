@@ -87,7 +87,7 @@ mysqlcheck -u root -p --all-databases --check-upgrade --auto-repair
 mysql_upgrade -u root -p
 
 
-CREATE TABLE hive.web.request_logs (
+CREATE TABLE externalhive.request_logs (
   request_time timestamp,
   url varchar,
   ip varchar,
@@ -95,5 +95,14 @@ CREATE TABLE hive.web.request_logs (
 )
 WITH (
   format = 'TEXTFILE',
-  external_location = 's3://my-bucket/data/logs/'
+  external_location = 'gs://gcs_sachinkoli/request_logs/'
 )
+
+
+
+java -server \
+     -Duser.timezone=UTC \
+     -cp build/libs/airpal-*-all.jar com.airbnb.airpal.AirpalApplication server reference.yml
+     
+     
+     
