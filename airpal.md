@@ -1,9 +1,9 @@
-export PROJECT=syw-cdw-ti-dev
-export WORKERS=0
-export REGION=us-central1 
-export ZONE=us-central1-c
-export BUCKET_NAME=gcs_dataproc_presto
-export INIT_ACTION=gs://dataproc-initialization-actions/presto/presto.sh
+export PROJECT=syw-cdw-ti-dev 	\
+export WORKERS=0	\
+export REGION=us-central1 	\
+export ZONE=us-central1-c	\
+export BUCKET_NAME=gcs_dataproc_presto	\
+export INIT_ACTION=gs://dataproc-initialization-actions/presto/presto.sh	
 
 gcloud dataproc clusters create presto-cluster \
      --project=${PROJECT} \
